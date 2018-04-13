@@ -47,6 +47,7 @@
 - https://github.com/jorendorff/cell-gc
 - https://github.com/Manishearth/rust-gc/
 - https://github.com/cipriancraciun/vonuvoli-scheme
+- https://github.com/oftlisp
 
 #### Garbage collection posts and papers
 
