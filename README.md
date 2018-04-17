@@ -2,7 +2,7 @@
 
 [![Gitter](https://badges.gitter.im/rust-hosted-langs/runtimes-WG.svg)](https://gitter.im/rust-hosted-langs/runtimes-WG?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-## WG summary
+## Purposes
 - Discuss runtime implementations
 - Build a library of articles and papers relevant to implementing runtimes
   in Rust
@@ -14,59 +14,45 @@
   tokio, await/async, ensuring good integration
 - To make Rust an attractive option for building a language in
 
-## Initial agenda
+## Contributing
+
+We abide by the [Rust Code of Conduct](https://www.rust-lang.org/en-US/conduct.html)
+and ask that you do as well.
+
+Presently we are a a group whose shared interests are implementing programming
+languages and doing so in Rust. If that describes you, feel free to join us
+in the Gitter channel linked above for general language and implementation
+conversation.
+
+If you have implemented a language in Rust, or are in the process of doing so,
+we'd love to hear about it!
+
+### Adding your language to our directory
+
+See the [survey ticket](https://github.com/rust-hosted-langs/runtimes-WG/issues/1)
+for an list of sample questions to consider. Fork this repository, create a new file
+`lib/<lang-name>.md` and submit a pull request.
+
+
+## Initial actions
 - Fundamentally, memory management and concurrency are where the most critical
   tradeoffs are made in runtime design. This is where implementation and APIs
-  in Rust will most carefully require unsafe code and safe abstraction design.
-- Survey of Rust prior art looking for
-  - memory management approaches
-  - concurrency models
-  - code ergonomics
-  - API safety
-  - Possible Rust-lang obstacles
-- Survey of non-Rust language runtimes
-  - CPython, micropython, pypy/rpython
-  - Ruby MRI, Rubinius
-  - Lua 5, LuaJIT
-  - Go
-  - Pony
-  - JVM
-  - Erlang, Elixir, BEAM
-
-### Prior art in Rust
-
-(inexhaustive lists)
-
-#### Languages, runtimes, libraries
-
-- https://gitlab.com/yorickpeterse/inko
-- https://github.com/PistonDevelopers/dyon
-- https://github.com/gluon-lang/gluon
-- https://github.com/murarth/ketos
-- https://github.com/jonathandturner/rhai
-- https://github.com/jorendorff/cell-gc
-- https://github.com/Manishearth/rust-gc/
-- https://github.com/cipriancraciun/vonuvoli-scheme
-- https://github.com/oftlisp
-
-#### Garbage collection posts and papers
-
-- https://manishearth.github.io/blog/2015/09/01/designing-a-gc-in-rust/
-- https://manishearth.github.io/blog/2016/08/18/gc-support-in-rust-api-design/
-- http://blog.pnkfx.org/blog/2015/10/27/gc-and-rust-part-0-how-does-gc-work/
-- http://blog.pnkfx.org/blog/2015/11/10/gc-and-rust-part-1-specing-the-problem/
-- http://blog.pnkfx.org/blog/2016/01/01/gc-and-rust-part-2-roots-of-the-problem/
-- [Rust as a language for high performance GC implementation](http://users.cecs.anu.edu.au/~steveb/downloads/pdf/rust-ismm-2016.pdf)
-
-### Possible Rust-lang obstacles
-- How to handle drop-unsafety in garbage collection.
-  - when object collection is non-determinstically ordered, `impl Drop` is inherntly unsafe
-  - see rust-gc for one workaround, see cell-gc for alternative advice
+  in Rust most carefully requires unsafe code and safe abstraction design.
+  There have been plenty of forays into implementing languages in Rust already,
+  we should learn from each other.
+- [Survey of Rust prior art](https://github.com/rust-hosted-langs/runtimes-WG/issues/1)
+- [Survey of non-Rust languages and runtimes](https://github.com/rust-hosted-langs/runtimes-WG/issues/5)
 
 ## Long term goals
 
-These goals are painted with broad strokes and need to be turned into specifications.
+These goals are broad desires and probably don't reflect actual outcomes.
 
+- Mature implementations of a variety of memory management runtimes wrapped in safe APIs
+  - well documented
+  - documenting where safe abstraction is not possible without unreasonable trade-offs
+  - The ideal result is a common set of traits that could be implemented by
+    allocators, GCs and managed data structures such that a change in a GC
+    strategy could be as simple as swapping in a different crate and recompiling.
 - A language and runtime that is to Rust as CPython is to C
   - Deliberately creating a scripting/glue language is strategic.
     Languages such as Python, Ruby and PHP proliferate quickly into every
@@ -76,9 +62,4 @@ These goals are painted with broad strokes and need to be turned into specificat
   - an accessible implementation
   - low friction to implementing new and wrapping existing libraries for it in Rust
   - doesn’t compromise the memory safety of the host language
-- Mature implementations of a variety of memory management runtimes wrapped in safe APIs
-  - well documented
-  - documenting where safe abstraction is not possible without unreasonable trade-offs
-  - The ideal result is a common set of traits that could be implemented by
-    allocators, GCs and managed data structures such that a change in a GC
-    strategy could be as simple as swapping in a different crate and recompiling.
+  - This may be one or more existing projects that can be given momentum!
